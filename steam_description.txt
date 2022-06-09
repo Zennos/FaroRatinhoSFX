@@ -1,0 +1,42 @@
+Adiciona comandos e teclas que toca sons de efeitos do Programa do Ratinho e O Melhor do Brasil.
+Tem configurações.
+
+Comandos Disponiveis:
+/som = Toca um som aleatorio.
+/ahrur = AHRUR AH BHRUAH BHRUU AH BHRUUUU AH
+/ai = Ai.
+/aiaiai = AAAAAAAAI AI AAAAAAAAI.
+/atumalaca = ATUMALACA KKKKKKKKKKKK.
+/brasil = BRASIL SIL SIL!.
+/brincadeira = É brincadeira hein.
+/calma = Que isso meu filho calma.
+/cavalo = Cavalo.
+/chega = CHEEEEGA!
+/danca = Dança gatinho dança.
+/demais = Demais.
+/elegosta = Ele gosta.
+/galinha = * Som de Galinha *
+/irra = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
+/nao = Nao.
+/nsei = * Nao sei que nome dar pra isso, me sugere alguma coisa *
+/okok = Okay Okay.
+/papelao = Que papelão hein.
+/pare = PARE!
+/patrao = Esse é meu patrão kkkk.
+/potencia = AOOOOOOOO POTENCIA!
+/rapaz = Rapaaaaz.
+/ratinho = RATINHO NHO NHO!
+/semgraca = Maque cara mais sem graça.
+/tambor = * Barulho de tambor *
+/tapa = * Tapa *
+/tomi = Tomi!
+/tuim = * Tuim *
+/uepa = Uepa!
+/uh = Uh!
+/ui = UUUUUUIII!
+/vaodanca = Vao dança?
+/wah = * Wah wah wah *
+/xi = Xiiiiiiii!
+
+> Porque não tem acentuação as vezes?
+- Terraria é um pouco problematico com isso.

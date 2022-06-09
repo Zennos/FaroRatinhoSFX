@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaroRatinhoSFX", "FaroRatinhoSFX.csproj", "{CFF24411-3B6E-42E7-8579-DFD869465658}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFF24411-3B6E-42E7-8579-DFD869465658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF24411-3B6E-42E7-8579-DFD869465658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF24411-3B6E-42E7-8579-DFD869465658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF24411-3B6E-42E7-8579-DFD869465658}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29308C9A-E246-4881-8958-2319FCCB0AD0}
+	EndGlobalSection
+EndGlobal
