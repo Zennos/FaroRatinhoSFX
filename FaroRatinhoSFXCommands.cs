@@ -1,11 +1,5 @@
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.Chat;
 using Terraria.ModLoader;
 using System;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace FaroRatinhoSFX

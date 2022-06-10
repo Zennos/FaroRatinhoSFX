@@ -3,7 +3,6 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Chat;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -96,7 +95,6 @@ namespace FaroRatinhoSFX
                         var player = Main.player[messageAuthor];
                         var message = $"/{g} - {sfx.description}";
 
-                        Console.WriteLine($"Matches: {matches.Count} - Index: {match.Index}");
                         if (matches.Count == 1 && match.Index == 0)
                         {
                             message = "";
@@ -126,8 +124,6 @@ namespace FaroRatinhoSFX
             string message = reader.ReadString();
             int team = reader.ReadInt32();
             int who = reader.ReadInt32();
-
-            System.Console.WriteLine($"Packet received: '{soundName}' - '{message}' - '{team}' - '{who}'");
 
             var sfx = Sounds[soundName];
 
