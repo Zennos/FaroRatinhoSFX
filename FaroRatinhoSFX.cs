@@ -20,6 +20,8 @@ namespace FaroRatinhoSFX
         public Dictionary<string, FaroRatinhoSound> Sounds = new();
         public Regex rx = new Regex(@"/(\w+)", RegexOptions.Compiled);
 
+        public ModKeybind RandomSoundKeybind;
+
         public override void Load()
         {
 
@@ -31,6 +33,7 @@ namespace FaroRatinhoSFX
             AddSound("atumalaca", "ATUMALACA KKKKKKKKKKKK.", new string[] { "haha", "risada", "kkk" }, defaultKeyBind: "NumPad4");
             AddSound("brasil", "BRASIL SIL SIL!.", defaultKeyBind: "NumPad5");
             AddSound("brincadeira", "Eh brincadeira hein.", defaultKeyBind: "NumPad6");
+            AddSound("boom", "*Boom*", new string[] { "bam", "bum", "thud", "vine" }, defaultKeyBind: "NumPad6");
             AddSound("calma", "Que isso meu filho calma.", new string[] { "filho" }, defaultKeyBind: "NumPad1");
             AddSound("cavalo", "Cavalo.", defaultKeyBind: "NumPad2");
             AddSound("chega", "CHEEEEGA!", new string[] { "xega" }, defaultKeyBind: "NumPad3");
@@ -39,15 +42,19 @@ namespace FaroRatinhoSFX
             AddSound("elegosta", "Ele gosta.", new string[] { "gosta", "ele" }, defaultKeyBind: "NumPad9");
             AddSound("galinha", "*[i:4016] Som de Galinha*", new string[] { "ga" }, defaultKeyBind: "NumPad4");
             AddSound("irra", "IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!", new string[] { "iha" }, defaultKeyBind: "NumPad5");
+            AddSound("mola", "*Barulho de Mola*", defaultKeyBind: "NumPad1");
             AddSound("nao", "Nao.", new string[] { "n" }, defaultKeyBind: "NumPad6");
-            AddSound("nsei", "*Nao sei que nome dar pra isso, me sugere no workshop kk*", defaultKeyBind: "NumPad1");
             AddSound("okok", "Okay Okay.", new string[] { "ok", "okay" }, defaultKeyBind: "NumPad2");
             AddSound("papelao", "Que papelao hein.", new string[] { "pa", "papel", "papelão", "que" }, defaultKeyBind: "NumPad3");
             AddSound("pare", "PARE!", defaultKeyBind: "NumPad7");
             AddSound("patrao", "Esse eh meu patrao kkkk.", new string[] { "patrão", "esse" }, defaultKeyBind: "NumPad8");
+            AddSound("peido", "*Peido*", new string[] { "peidar", "fart", "pe" }, defaultKeyBind: "NumPad8");
             AddSound("potencia", "AOOOOOOOO POTENCIA!", new string[] { "ao" }, defaultKeyBind: "NumPad9");
             AddSound("rapaz", "[i:4375] Rapaaaaz.", new string[] { "rapa" }, defaultKeyBind: "NumPad4");
             AddSound("ratinho", "[i:4375] RATINHO NHO NHO!", new string[] { "ra" }, defaultKeyBind: "NumPad5");
+
+            RandomSoundKeybind = KeybindLoader.RegisterKeybind(this, "Tocar \"som\"", "NumPad0");
+
             AddSound("semgraca", "Maque cara mais sem grasa.", new string[] { "sem", "graça", "semgraça" }, defaultKeyBind: "NumPad6");
             AddSound("tambor", "*Barulho de tambor*", new string[] { "tum" }, defaultKeyBind: "NumPad4");
             AddSound("tapa", "*Tapa*", new string[] { "pshh", "psh" }, defaultKeyBind: "NumPad5");
@@ -83,10 +90,20 @@ namespace FaroRatinhoSFX
 
                     GroupCollection groups = match.Groups;
                     var g = groups[1].Value;
-                    if (SoundsNamesAndAliases.ContainsKey(g))
+                    bool isRandomSound = (g == "som" || g == "sound" || g == "aleatorio" || g == "r");
+                    if (SoundsNamesAndAliases.ContainsKey(g) || isRandomSound)
                     {
-                        var soundName = SoundsNamesAndAliases[g];
-                        var sfx = Sounds[soundName];
+                        var soundName = "";
+                        FaroRatinhoSound sfx = null;
+                        if (isRandomSound)
+                        {
+                            sfx = GetRandomSFX();
+                            soundName = sfx.name;
+                        } else
+                        {
+                            soundName = SoundsNamesAndAliases[g];
+                            sfx = Sounds[soundName];
+                        }
 
                         if (preventRepeat.Contains(soundName)) continue;
 
@@ -100,7 +117,7 @@ namespace FaroRatinhoSFX
                             message = "";
                         }
 
-                        PlaySound(sfx.sound, messageAuthor, message, player.team);
+                        PlaySound(sfx, messageAuthor, message, player.team);
                         count++;
 
                         if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
@@ -108,13 +125,48 @@ namespace FaroRatinhoSFX
 
                 }
             }
-
         }
 
         public void AddSound(string name, string description, string[] aliases = null, string defaultKeyBind = "" )
         {
             aliases ??= new string[] { };
             Sounds.Add(name, new FaroRatinhoSound(mod: this, name: name, description: description, aliases: aliases, defaultKeyBind: defaultKeyBind));
+        }
+
+        public FaroRatinhoSound GetRandomSFX()
+        {
+            var clientConfig = ModContent.GetInstance<FaroRatinhoSFXConfig>();
+            var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
+
+            List<string> ignoredSounds = new();
+
+            foreach (var item in clientConfig.ignoredSounds)
+            {
+                var search = item.ToLower();
+                if (!SoundsNamesAndAliases.ContainsKey(search)) continue;
+                ignoredSounds.Add(SoundsNamesAndAliases[search]);
+            }
+
+            foreach (var item in serverConfig.ignoredSounds)
+            {
+                var search = item.ToLower();
+                if (!SoundsNamesAndAliases.ContainsKey(search)) continue;
+                ignoredSounds.Add(SoundsNamesAndAliases[search]);
+            }
+
+
+            List<string> keyList = new(Sounds.Keys);
+            // Removing the ones that are in the ignoredList.
+            keyList.RemoveAll(key => ignoredSounds.Contains(key));
+
+            if (keyList.Count == 0) return Sounds.First().Value;
+
+            // Pick one random of the list.
+            Random rand = new Random();
+            string randomKey = keyList[rand.Next(keyList.Count)];
+
+            // Return the sound.
+            return Sounds[randomKey];
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -127,7 +179,7 @@ namespace FaroRatinhoSFX
 
             var sfx = Sounds[soundName];
 
-			PlaySound(sfx.sound, who, message, team);
+			PlaySound(sfx, who, message, team);
 			
         }
 
@@ -143,7 +195,7 @@ namespace FaroRatinhoSFX
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                PlaySound(sfx.sound, player.whoAmI, sfx.description);
+                PlaySound(sfx, player.whoAmI, sfx.description, 0);
                 return;
             }
 
@@ -155,18 +207,30 @@ namespace FaroRatinhoSFX
             packet.Send();
         }
 
-        public void PlaySound(SoundStyle sound, int fromWho, string message = "", int team = 0)
+        public void PlaySound(FaroRatinhoSound sfx, int fromWho, string message = "", int team = 0)
         {
 
+            var sound = sfx.sound;
             var config = ModContent.GetInstance<FaroRatinhoSFXConfig>();
             var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
 
-
             if (serverConfig.DisableCommands || config.DisableCommands)
             {
-                if (Main.LocalPlayer.whoAmI == fromWho)
+                if (Main.netMode == NetmodeID.MultiplayerClient && Main.LocalPlayer.whoAmI == fromWho)
                 {
-                    Main.NewText($"Nao foi possivel tocar o audio ja que foi desabilitado nas opcoes{ (serverConfig.DisableCommands ? " do servidor" : "") }.");
+                    Main.NewText($"Sons de efeito foi desabilitado nas opcoes{ (serverConfig.DisableCommands ? " do servidor" : "") }.", new Color(255f, 35f, 0f));
+                }
+                return;
+            }
+
+            var ignored = CheckIfSoundIsIgnored(sfx, config.ignoredSounds);
+            var ignoredServer = CheckIfSoundIsIgnored(sfx, serverConfig.ignoredSounds);
+
+            if (ignored || ignoredServer)
+            {
+                if (ignoredServer && Main.netMode == NetmodeID.MultiplayerClient && Main.LocalPlayer.whoAmI == fromWho)
+                {
+                    Main.NewText($"O dono do servidor desabilitou esse som.", new Color(255f, 35f, 0f));
                 }
                 return;
             }
@@ -192,6 +256,20 @@ namespace FaroRatinhoSFX
                 Console.WriteLine(message);
             }
 
+        }
+
+        public bool CheckIfSoundIsIgnored(FaroRatinhoSound sfx, List<string> list)
+        {
+            foreach (var ignoredName in list)
+            {
+                var searchName = ignoredName.ToLower();
+                if (!SoundsNamesAndAliases.ContainsKey(searchName)) continue;
+                var name = SoundsNamesAndAliases[searchName];
+
+                if (sfx.name == name) return true;
+            }
+
+            return false;
         }
 
         public static bool IsPlayerLocalServerOwner(Player player)

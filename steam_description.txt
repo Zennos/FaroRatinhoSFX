@@ -9,6 +9,7 @@ Comandos Disponiveis:
 /atumalaca = ATUMALACA KKKKKKKKKKKK.
 /brasil = BRASIL SIL SIL!.
 /brincadeira = É brincadeira hein.
+/boom = * Boom *
 /calma = Que isso meu filho calma.
 /cavalo = Cavalo.
 /chega = CHEEEEGA!
@@ -18,11 +19,12 @@ Comandos Disponiveis:
 /galinha = * Som de Galinha *
 /irra = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
 /nao = Nao.
-/nsei = * Nao sei que nome dar pra isso, me sugere alguma coisa *
+/mola = * Barulho de mola *
 /okok = Okay Okay.
 /papelao = Que papelão hein.
 /pare = PARE!
 /patrao = Esse é meu patrão kkkk.
+/peido = * Peido *
 /potencia = AOOOOOOOO POTENCIA!
 /rapaz = Rapaaaaz.
 /ratinho = RATINHO NHO NHO!
@@ -37,6 +39,12 @@ Comandos Disponiveis:
 /vaodanca = Vao dança?
 /wah = * Wah wah wah *
 /xi = Xiiiiiiii!
+
+[b]v1.1.1[/b]
+- Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas é engraçado :) )
+- Adicionado tecla para /som (tinha esquecido).
+- Adicionado opção de nao tocar certos sons de sua escolha.
+- Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestão). Se vc botou tecla nesse som, talvez tenha q botar de novo.
 
 > Porque não tem acentuação as vezes?
 - Terraria é um pouco problematico com isso.

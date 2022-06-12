@@ -9,6 +9,7 @@ Comandos Disponiveis:
 [c/FFFF00:/atumalaca] = ATUMALACA KKKKKKKKKKKK.
 [c/FFFF00:/brasil] = [c/00FF00:BRASIL] [c/FFFF00:SIL] [c/0000FF:SIL!].
 [c/FFFF00:/brincadeira] = Eh brincadeira hein.
+[c/FFFF00:/boom] = *Boom*
 [c/FFFF00:/calma] = Que isso meu filho calma.
 [c/FFFF00:/cavalo] = Cavalo.
 [c/FFFF00:/chega] = CHEEEEGA!
@@ -18,11 +19,12 @@ Comandos Disponiveis:
 [c/FFFF00:/galinha] = *Som de Galinha*
 [c/FFFF00:/irra] = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
 [c/FFFF00:/nao] = Nao.
-[c/FFFF00:/nsei] = *Nao sei que nome dar pra isso, me sugere alguma coisa*
+[c/FFFF00:/mola] = *Barulho de mola*
 [c/FFFF00:/okok] = Okay Okay.
 [c/FFFF00:/papelao] = Que papelao hein.
 [c/FFFF00:/pare] = PARE!
 [c/FFFF00:/patrao] = Esse eh meu patrao kkkk.
+[c/FFFF00:/peido] = *Peido*.
 [c/FFFF00:/potencia] = AOOOOOOOO POTENCIA!
 [c/FFFF00:/rapaz] = [i:4375] Rapaaaaz.
 [c/FFFF00:/ratinho] = [i:4375] RATINHO NHO NHO!
@@ -37,6 +39,12 @@ Comandos Disponiveis:
 [c/FFFF00:/vaodanca] = Vao dansa?
 [c/FFFF00:/wah] = *Wah wah wah*
 [c/FFFF00:/xi] = Xiiiiiiii!
+
+[c/0000FF:/v1.1.1]
+- Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas eh engrasado :) )
+- Adicionado tecla para /som (tinha esquecido).
+- Adicionado opsao de nao tocar certos sons de sua escolha.
+- Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestao). Se vc botou tecla nesse som, talvez tenha q botar de novo.
 
 > Porque nao tem acentuasao as vezes?
 - Terraria eh um pouco problematico com isso.

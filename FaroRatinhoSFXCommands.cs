@@ -14,12 +14,9 @@ namespace FaroRatinhoSFX
 
 		public override void Action(CommandCaller caller, string input, string[] args)
 		{
-			List<string> keyList = new(FaroRatinhoSFX.Instance.Sounds.Keys);
-			Random rand = new Random();
-			string randomKey = keyList[rand.Next(keyList.Count)];
+			var sfx = FaroRatinhoSFX.Instance.GetRandomSFX();
 
-			var sfx = FaroRatinhoSFX.Instance.Sounds[randomKey];
-            FaroRatinhoSFX.Instance.SendSoundMessage(caller.Player, sfx);
+			FaroRatinhoSFX.Instance.SendSoundMessage(caller.Player, sfx);
 
 		}
 
@@ -84,6 +81,13 @@ namespace FaroRatinhoSFX
 		public override string Description => "\"Eh brincadeira hein.\"";
 	}
 
+	public class BoomCommand : TomiCommand
+	{
+		public override string Command => "boom";
+
+		public override string Description => "*Boom*";
+	}
+
 	public class CalmaCommand : TomiCommand
 	{
 		public override string Command => "calma";
@@ -132,18 +136,18 @@ namespace FaroRatinhoSFX
 		public override string Description => "\"IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!\"";
 	}
 
+	public class MolaCommand : TomiCommand
+	{
+		public override string Command => "mola";
+
+		public override string Description => "*Barulho de Mola*";
+	}
+
 	public class NaoCommand : TomiCommand
 	{
 		public override string Command => "nao";
 
 		public override string Description => "\"Nao.\"";
-	}
-
-	public class NSeiCommand : TomiCommand
-	{
-		public override string Command => "nsei";
-
-		public override string Description => "*Nao sei que nome dar pra isso, me sugere no workshop kk*";
 	}
 
 	public class OkOkCommand : TomiCommand
@@ -172,6 +176,13 @@ namespace FaroRatinhoSFX
 		public override string Command => "patrao";
 
 		public override string Description => "\"Esse eh meu patrao kkkk.\"";
+	}
+
+	public class PeidoCommand : TomiCommand
+	{
+		public override string Command => "peido";
+
+		public override string Description => "*Peido*";
 	}
 
 	public class PotenciaCommand : TomiCommand

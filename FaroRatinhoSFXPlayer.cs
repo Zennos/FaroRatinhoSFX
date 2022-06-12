@@ -12,36 +12,70 @@ namespace FaroRatinhoSFX
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            int count = 0;
+            //int count = 0;
+
+            if (FaroRatinhoSFX.Instance.RandomSoundKeybind.JustPressed)
+            {
+                var randSfx = FaroRatinhoSFX.Instance.GetRandomSFX();
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    FaroRatinhoSFX.Instance.PlaySound(randSfx, Player.whoAmI, randSfx.description);
+                }
+                else
+                {
+                    ChatHelper.SendChatMessageFromClient(new ChatMessage("/som"));
+                }
+
+                return;
+            }
+
             foreach (var sfxEntry in FaroRatinhoSFX.Instance.Sounds)
             {
                 var sfx = sfxEntry.Value;
                 if (!string.IsNullOrEmpty(sfx.defaultKeyBind) && sfx.keybind.JustPressed)
                 {
-                    var config = ModContent.GetInstance<FaroRatinhoSFXConfig>();
-
-                    var color = new Color(config.MessageColor.R, config.MessageColor.G, config.MessageColor.B);
-                    if (Player.team > 0 && config.MessageColorAsTeam)
-                    {
-                        var team = Player.team;
-                        color = new Color(Main.teamColor[team].R, Main.teamColor[team].G, Main.teamColor[team].B);
-                    }
-                    var message = "/" + sfx.name;
-
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        FaroRatinhoSFX.Instance.PlaySound(sfx.sound, Player.whoAmI, sfx.description);
-                    } else
-                    {
-                        ChatHelper.SendChatMessageFromClient(new ChatMessage(message));
+                        FaroRatinhoSFX.Instance.PlaySound(sfx, Player.whoAmI, sfx.description);
+                        break;
                     }
-                    //ChatHelper.BroadcastChatMessageAs((byte)Player.whoAmI, NetworkText.FromLiteral("/" + sfx.name), color);
-                    count++;
+                    else
+                    {
+                        SendSoundCommandToChat(sfx);
+                        break;
+                    }
 
-                    if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
+                    //count++;
+
+                    //if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
 
                 }
             }
+        }
+
+        public void SendSoundCommandToChat(FaroRatinhoSound sfx, bool byRandom = false)
+        {
+            var config = ModContent.GetInstance<FaroRatinhoSFXConfig>();
+
+            var color = new Color(config.MessageColor.R, config.MessageColor.G, config.MessageColor.B);
+            if (Player.team > 0 && config.MessageColorAsTeam)
+            {
+                var team = Player.team;
+                color = new Color(Main.teamColor[team].R, Main.teamColor[team].G, Main.teamColor[team].B);
+            }
+            var message = "/" + sfx.name;
+
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                FaroRatinhoSFX.Instance.PlaySound(sfx, Player.whoAmI, sfx.description);
+            }
+            else
+            {
+                ChatHelper.SendChatMessageFromClient(new ChatMessage(message));
+            }
+            //count++;
+
+            //if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
         }
 
     }
