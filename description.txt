@@ -41,7 +41,7 @@ Comandos Disponiveis:
 [c/FFFF00:/xi] = Xiiiiiiii!
 
 [c/0000FF:/v1.1.1]
-- Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas eh engrasado :) )
+- Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas eh engrasado)
 - Adicionado tecla para /som (tinha esquecido).
 - Adicionado opsao de nao tocar certos sons de sua escolha.
 - Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestao). Se vc botou tecla nesse som, talvez tenha q botar de novo.

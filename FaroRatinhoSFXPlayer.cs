@@ -12,7 +12,6 @@ namespace FaroRatinhoSFX
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            //int count = 0;
 
             if (FaroRatinhoSFX.Instance.RandomSoundKeybind.JustPressed)
             {
@@ -29,9 +28,8 @@ namespace FaroRatinhoSFX
                 return;
             }
 
-            foreach (var sfxEntry in FaroRatinhoSFX.Instance.Sounds)
+            foreach (var sfx in FaroRatinhoSFX.Instance.Sounds.Values)
             {
-                var sfx = sfxEntry.Value;
                 if (!string.IsNullOrEmpty(sfx.defaultKeyBind) && sfx.keybind.JustPressed)
                 {
                     if (Main.netMode == NetmodeID.SinglePlayer)
@@ -44,10 +42,6 @@ namespace FaroRatinhoSFX
                         SendSoundCommandToChat(sfx);
                         break;
                     }
-
-                    //count++;
-
-                    //if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
 
                 }
             }
@@ -73,9 +67,6 @@ namespace FaroRatinhoSFX
             {
                 ChatHelper.SendChatMessageFromClient(new ChatMessage(message));
             }
-            //count++;
-
-            //if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
         }
 
     }
