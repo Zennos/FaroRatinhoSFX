@@ -9,15 +9,19 @@ Comandos Disponiveis:
 [c/FFFF00:/atumalaca] = ATUMALACA KKKKKKKKKKKK.
 [c/FFFF00:/brasil] = [c/00FF00:BRASIL] [c/FFFF00:SIL] [c/0000FF:SIL!].
 [c/FFFF00:/brincadeira] = Eh brincadeira hein.
+[c/FFFF00:/boing] = *Boing*
 [c/FFFF00:/boom] = *Boom*
 [c/FFFF00:/calma] = Que isso meu filho calma.
 [c/FFFF00:/cavalo] = Cavalo.
 [c/FFFF00:/chega] = CHEEEEGA!
+[c/FFFF00:/corre] = *Barulho de correr de desenho animado*
 [c/FFFF00:/danca] = Dansa gatinho dansa.
 [c/FFFF00:/demais] = Demais.
+[c/FFFF00:/dutudutuim] = *Du tu du tuim*.
 [c/FFFF00:/elegosta] = Ele gosta.
 [c/FFFF00:/galinha] = *Som de Galinha*
 [c/FFFF00:/irra] = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
+[c/FFFF00:/menino] = Eh o menino de papai eh?
 [c/FFFF00:/nao] = Nao.
 [c/FFFF00:/mola] = *Barulho de mola*
 [c/FFFF00:/okok] = Okay Okay.
@@ -37,8 +41,13 @@ Comandos Disponiveis:
 [c/FFFF00:/uh] = Uh!
 [c/FFFF00:/ui] = UUUUUUIII!
 [c/FFFF00:/vaodanca] = Vao dansa?
+[c/FFFF00:/vixi] = Vixi!
 [c/FFFF00:/wah] = *Wah wah wah*
 [c/FFFF00:/xi] = Xiiiiiiii!
+
+[c/0000FF:/v1.2.1]
+- Adicionado /vixi, /menino, /dutudutuim, /corre e /boing.
+- Alterado o volume e delay de alguns audios.
 
 [c/0000FF:/v1.1.1]
 - Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas eh engrasado)

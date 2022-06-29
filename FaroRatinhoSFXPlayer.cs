@@ -9,7 +9,6 @@ namespace FaroRatinhoSFX
 {
     public class FaroRatinhoSFXPlayer : ModPlayer
     {
-
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
 

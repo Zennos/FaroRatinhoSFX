@@ -81,6 +81,13 @@ namespace FaroRatinhoSFX
 		public override string Description => "\"Eh brincadeira hein.\"";
 	}
 
+	public class BoingCommand : TomiCommand
+	{
+		public override string Command => "boing";
+
+		public override string Description => "*Boing*";
+	}
+
 	public class BoomCommand : TomiCommand
 	{
 		public override string Command => "boom";
@@ -106,6 +113,12 @@ namespace FaroRatinhoSFX
 		public override string Description => "\"CHEEEEGA!\"";
 	}
 
+	public class CorreCommand : TomiCommand
+	{
+		public override string Command => "corre";
+		public override string Description => "\"Corre! kkkkkkk!\"";
+	}
+
 	public class DancaCommand : TomiCommand
 	{
 		public override string Command => "danca";
@@ -116,6 +129,12 @@ namespace FaroRatinhoSFX
 	{
 		public override string Command => "demais";
 		public override string Description => "\"Demais.\"";
+	}
+
+	public class DutudutuimCommand : TomiCommand
+	{
+		public override string Command => "dutudutuim";
+		public override string Description => "*Du tu du tuim*";
 	}
 
 	public class EleGostaCommand : TomiCommand
@@ -141,6 +160,13 @@ namespace FaroRatinhoSFX
 		public override string Command => "mola";
 
 		public override string Description => "*Barulho de Mola*";
+	}
+
+	public class MeninoCommand : TomiCommand
+	{
+		public override string Command => "menino";
+
+		public override string Description => "\"Eh o menino de papai eh?\"";
 	}
 
 	public class NaoCommand : TomiCommand
@@ -260,6 +286,13 @@ namespace FaroRatinhoSFX
 		public override string Command => "vaodanca";
 
 		public override string Description => "\"Vao dansa?\"";
+	}
+
+	public class VixiCommand : TomiCommand
+	{
+		public override string Command => "vixi";
+
+		public override string Description => "\"Vixi!\"";
 	}
 
 	public class WahCommand : TomiCommand

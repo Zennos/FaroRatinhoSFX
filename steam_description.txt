@@ -9,15 +9,19 @@ Comandos Disponiveis:
 /atumalaca = ATUMALACA KKKKKKKKKKKK.
 /brasil = BRASIL SIL SIL!.
 /brincadeira = É brincadeira hein.
+/boing = * Boing *
 /boom = * Boom *
 /calma = Que isso meu filho calma.
 /cavalo = Cavalo.
 /chega = CHEEEEGA!
+/corre = * Barulho de correr de desenho animado *
 /danca = Dança gatinho dança.
 /demais = Demais.
+/dutudutuim = * Du tu du tuim *
 /elegosta = Ele gosta.
 /galinha = * Som de Galinha *
 /irra = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
+/menino = É o menino de papai é?
 /nao = Nao.
 /mola = * Barulho de mola *
 /okok = Okay Okay.
@@ -37,8 +41,13 @@ Comandos Disponiveis:
 /uh = Uh!
 /ui = UUUUUUIII!
 /vaodanca = Vao dança?
+/vixi = Vixi!
 /wah = * Wah wah wah *
 /xi = Xiiiiiiii!
+
+[b]v1.2.1[/b]
+- Adicionado /vixi, /menino, /dutudutuim, /corre e /boing.
+- Alterado o volume e delay de alguns audios.
 
 [b]v1.1.1[/b]
 - Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas é engraçado)
