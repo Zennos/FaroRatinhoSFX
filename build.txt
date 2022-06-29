@@ -1,3 +1,3 @@
 displayName = Sons de Efeito Ratinho & Faro
 author = Edoan
-version = 1.2.1
+version = 1.2.2

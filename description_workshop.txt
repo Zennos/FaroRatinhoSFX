@@ -1,0 +1,62 @@
+Adiciona comandos e teclas que toca sons de efeitos do Programa do Ratinho e O Melhor do Brasil.
+Tem configurações.
+
+Comandos Disponiveis:
+[b]/som[/b] = Toca um som aleatorio.
+[b]/ahrur[/b] = AHRUR AH BHRUAH BHRUU AH BHRUUUU AH
+[b]/ai[/b] = Ai.
+[b]/aiaiai[/b] = AAAAAAAAI AI AAAAAAAAI.
+[b]/atumalaca[/b] = ATUMALACA KKKKKKKKKKKK.
+[b]/brasil[/b] = BRASIL SIL SIL!.
+[b]/brincadeira[/b] = É brincadeira hein.
+[b]/boing[/b] = * Boing *
+[b]/boom[/b] = * Boom *
+[b]/calma[/b] = Que isso meu filho calma.
+[b]/cavalo[/b] = Cavalo.
+[b]/chega[/b] = CHEEEEGA!
+[b]/corre[/b] = * Barulho de correr de desenho animado *
+[b]/danca[/b] = Dança gatinho dança.
+[b]/demais[/b] = Demais.
+[b]/dutudutuim[/b] = * Du tu du tuim *
+[b]/elegosta[/b] = Ele gosta.
+[b]/galinha[/b] = * Som de Galinha *
+[b]/irra[/b] = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
+[b]/menino[/b] = É o menino de papai é?
+[b]/nao[/b] = Nao.
+[b]/mola[/b] = * Barulho de mola *
+[b]/okok[/b] = Okay Okay.
+[b]/papelao[/b] = Que papelão hein.
+[b]/pare[/b] = PARE!
+[b]/patrao[/b] = Esse é meu patrão kkkk.
+[b]/peido[/b] = * Peido *
+[b]/potencia[/b] = AOOOOOOOO POTENCIA!
+[b]/rapaz[/b] = Rapaaaaz.
+[b]/ratinho[/b] = RATINHO NHO NHO!
+[b]/semgraca[/b] = Maque cara mais sem graça.
+[b]/tambor[/b] = * Barulho de tambor *
+[b]/tapa[/b] = * Tapa *
+[b]/tomi[/b] = Tomi!
+[b]/tuim[/b] = * Tuim *
+[b]/uepa[/b] = Uepa!
+[b]/uh[/b] = Uh!
+[b]/ui[/b] = UUUUUUIII!
+[b]/vaodanca[/b] = Vao dança?
+[b]/vixi[/b] = Vixi!
+[b]/wah[/b] = * Wah wah wah *
+[b]/xi[/b] = Xiiiiiiii!
+
+[b]v1.2.1[/b]
+- Adicionado [b]/vixi[/b], [b]/menino[/b], [b]/dutudutuim[/b], [b]/corre[/b] e [b]/boing[/b].
+- Alterado o volume e delay de alguns audios.
+
+[b]v1.1.1[/b]
+- Adicionado [b]/peido[/b] e [b]/boom[/b] (nao tem no ratinho e nem no faro mas é engraçado)
+- Adicionado tecla para [b]/som[/b] (tinha esquecido).
+- Adicionado opção de nao tocar certos sons de sua escolha.
+- Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestão). Se vc botou tecla nesse som, talvez tenha q botar de novo.
+
+> Porque não tem acentuação as vezes?
+- Terraria é um pouco problematico com isso.
+
+Me apoia se quiser. :)
+[url=nubank.com.br/pagar/xldsq/rfgW3dODQh]Pix[/url] | [url=paypal.com/donate?hosted_button_id=68QJ5UGN25LXU]Paypal[/url] | [url=ko-fi.com/edoan]Ko-fi[/url]
