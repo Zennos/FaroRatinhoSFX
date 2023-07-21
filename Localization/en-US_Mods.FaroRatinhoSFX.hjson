@@ -1,0 +1,123 @@
+Keybinds: {
+	"Tocar \"ahrur\".DisplayName": Tocar "ahrur"
+	"Tocar \"ai\".DisplayName": Tocar "ai"
+	"Tocar \"aiaiai\".DisplayName": Tocar "aiaiai"
+	"Tocar \"atumalaca\".DisplayName": Tocar "atumalaca"
+	"Tocar \"brasil\".DisplayName": Tocar "brasil"
+	"Tocar \"brincadeira\".DisplayName": Tocar "brincadeira"
+	"Tocar \"boing\".DisplayName": Tocar "boing"
+	"Tocar \"boom\".DisplayName": Tocar "boom"
+	"Tocar \"calma\".DisplayName": Tocar "calma"
+	"Tocar \"cavalo\".DisplayName": Tocar "cavalo"
+	"Tocar \"chega\".DisplayName": Tocar "chega"
+	"Tocar \"corre\".DisplayName": Tocar "corre"
+	"Tocar \"danca\".DisplayName": Tocar "danca"
+	"Tocar \"demais\".DisplayName": Tocar "demais"
+	"Tocar \"dutudutuim\".DisplayName": Tocar "dutudutuim"
+	"Tocar \"elegosta\".DisplayName": Tocar "elegosta"
+	"Tocar \"galinha\".DisplayName": Tocar "galinha"
+	"Tocar \"irra\".DisplayName": Tocar "irra"
+	"Tocar \"menino\".DisplayName": Tocar "menino"
+	"Tocar \"mola\".DisplayName": Tocar "mola"
+	"Tocar \"nao\".DisplayName": Tocar "nao"
+	"Tocar \"okok\".DisplayName": Tocar "okok"
+	"Tocar \"papelao\".DisplayName": Tocar "papelao"
+	"Tocar \"pare\".DisplayName": Tocar "pare"
+	"Tocar \"patrao\".DisplayName": Tocar "patrao"
+	"Tocar \"peido\".DisplayName": Tocar "peido"
+	"Tocar \"potencia\".DisplayName": Tocar "potencia"
+	"Tocar \"rapaz\".DisplayName": Tocar "rapaz"
+	"Tocar \"ratinho\".DisplayName": Tocar "ratinho"
+	"Tocar \"som\".DisplayName": Tocar som aleatório
+	"Tocar \"semgraca\".DisplayName": Tocar "semgraca"
+	"Tocar \"tambor\".DisplayName": Tocar "tambor"
+	"Tocar \"tapa\".DisplayName": Tocar "tapa"
+	"Tocar \"tomi\".DisplayName": Tocar "tomi"
+	"Tocar \"tuim\".DisplayName": Tocar "tuim"
+	"Tocar \"uepa\".DisplayName": Tocar "uepa"
+	"Tocar \"uh\".DisplayName": Tocar "uh"
+	"Tocar \"ui\".DisplayName": Tocar "ui"
+	"Tocar \"vixi\".DisplayName": Tocar "vixi"
+	"Tocar \"vaodanca\".DisplayName": Tocar "vaodanca"
+	"Tocar \"wah\".DisplayName": Tocar "wah"
+	"Tocar \"xi\".DisplayName": Tocar "xi"
+}
+
+Configs: {
+	FaroRatinhoSFXConfig: {
+		DisplayName: Faro Ratinho SFX Config
+
+		DisableCommands: {
+			Label: Desabilitar comandos
+			Tooltip: Nada tocara pra voce e nada vai aparecer no chat.
+		}
+
+		Volume: {
+			Label: Volume
+			Tooltip:
+				'''
+				0 = mutado.
+				1 = maximo.
+				'''
+		}
+
+		MessageColor: {
+			Label: Cor da mensagem
+			Tooltip: Cor em que aparece no chat.
+		}
+
+		MessageColorAsTeam: {
+			Label: Usar cor do time nas mensagens.
+			Tooltip: ""
+		}
+
+		DisableChatMessage: {
+			Label: Desabilitar mensagens no chat
+			Tooltip: Desabilitar texto no chat.
+		}
+
+		CommandAnywhere: {
+			Label: Comando em qualquer lugar
+			Tooltip: Tocar som se o comando estiver em qualquer lugar da mensagem.
+		}
+
+		ignoredSounds: {
+			Label: Nao tocar esses sons:
+			Tooltip:
+				'''
+				Se um jogador digitar um desses sons, ele não será tocado, nem com /som.
+				Adicione na lista os sons que não queira ouvir.
+				'''
+		}
+	}
+
+	FaroRatinhoSFXServerConfig: {
+		DisplayName: Faro Ratinho SFX Server Config
+
+		DisableCommands: {
+			Label: Desabilitar comandos
+			Tooltip: ""
+		}
+
+		DisableChatMessage: {
+			Label: Desabilitar texto no chat.
+			Tooltip: ""
+		}
+
+		MaxSounds: {
+			Label: Maximo de som ao mesmo tempo na mesma mensagem.
+			Tooltip: ""
+		}
+
+		ignoredSounds: {
+			Label: Nao tocar esses sons:
+			Tooltip:
+				'''
+				Se um jogador digitar um desses sons, ele não será tocado, nem com /som.
+				Adicione na lista os sons que não queira ouvir.
+				'''
+		}
+
+		Headers.Note: "[c/00FF00:Opções de Servidor]: As opções abaixo serão aplicada pra todos no servidor."
+	}
+}

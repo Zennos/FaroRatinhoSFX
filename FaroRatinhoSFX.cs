@@ -71,10 +71,10 @@ namespace FaroRatinhoSFX
             AddSound("wah", "*Wah wah wah*", new string[] { "ua", "wa" }, defaultKeyBind: "NumPad9");
             AddSound("xi", "Xiiiiiiii!", new string[] { "chi" }, defaultKeyBind: "NumPad4");
 
-            On.Terraria.Chat.ChatHelper.DisplayMessage += ChatHelper_DisplayMessage;
+            Terraria.Chat.On_ChatHelper.DisplayMessage += ChatHelper_DisplayMessage;
         }
 
-        private void ChatHelper_DisplayMessage(On.Terraria.Chat.ChatHelper.orig_DisplayMessage orig, NetworkText text, Color color, byte messageAuthor)
+        private void ChatHelper_DisplayMessage(Terraria.Chat.On_ChatHelper.orig_DisplayMessage orig, NetworkText text, Color color, byte messageAuthor)
         {
             orig.Invoke(text, color, messageAuthor);
 
