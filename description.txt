@@ -1,38 +1,38 @@
 Adiciona comandos e teclas que toca sons de efeitos do Programa do Ratinho e O Melhor do Brasil.
-Tem configurasoes.
+Contém configurações.
 
-Comandos Disponiveis:
+Comandos Disponíveis:
 [c/FFFF00:/som] = Toca um som aleatorio.
 [c/FFFF00:/ahrur] = AHRUR AH BHRUAH BHRUU AH BHRUUUU AH
 [c/FFFF00:/ai] = Ai.
 [c/FFFF00:/aiaiai] = AAAAAAAAI AI AAAAAAAAI.
 [c/FFFF00:/atumalaca] = ATUMALACA KKKKKKKKKKKK.
 [c/FFFF00:/brasil] = [c/00FF00:BRASIL] [c/FFFF00:SIL] [c/0000FF:SIL!].
-[c/FFFF00:/brincadeira] = Eh brincadeira hein.
+[c/FFFF00:/brincadeira] = É brincadeira hein.
 [c/FFFF00:/boing] = *Boing*
 [c/FFFF00:/boom] = *Boom*
 [c/FFFF00:/calma] = Que isso meu filho calma.
 [c/FFFF00:/cavalo] = Cavalo.
 [c/FFFF00:/chega] = CHEEEEGA!
 [c/FFFF00:/corre] = *Barulho de correr de desenho animado*
-[c/FFFF00:/danca] = Dansa gatinho dansa.
+[c/FFFF00:/danca] = Dança gatinho dança.
 [c/FFFF00:/demais] = Demais.
 [c/FFFF00:/dutudutuim] = *Du tu du tuim*.
 [c/FFFF00:/elegosta] = Ele gosta.
 [c/FFFF00:/galinha] = *Som de Galinha*
 [c/FFFF00:/irra] = IIIIIIIIRRRRRRRRAAAAAAAAAAAA!!!
-[c/FFFF00:/menino] = Eh o menino de papai eh?
+[c/FFFF00:/menino] = É o menino de papai é?
 [c/FFFF00:/nao] = Nao.
 [c/FFFF00:/mola] = *Barulho de mola*
 [c/FFFF00:/okok] = Okay Okay.
-[c/FFFF00:/papelao] = Que papelao hein.
+[c/FFFF00:/papelao] = Que papelão hein.
 [c/FFFF00:/pare] = PARE!
-[c/FFFF00:/patrao] = Esse eh meu patrao kkkk.
+[c/FFFF00:/patrao] = Esse é meu patrão kkkk.
 [c/FFFF00:/peido] = *Peido*.
-[c/FFFF00:/potencia] = AOOOOOOOO POTENCIA!
+[c/FFFF00:/potencia] = AOOOOOOOO POTÊNCIA!
 [c/FFFF00:/rapaz] = [i:4375] Rapaaaaz.
 [c/FFFF00:/ratinho] = [i:4375] RATINHO NHO NHO!
-[c/FFFF00:/semgraca] = Maque cara mais sem grasa.
+[c/FFFF00:/semgraca] = Maque cara mais sem graça.
 [c/FFFF00:/tambor] = *Barulho de tambor*
 [c/FFFF00:/tapa] = *Tapa*
 [c/FFFF00:/tomi] = Tomi!
@@ -40,20 +40,20 @@ Comandos Disponiveis:
 [c/FFFF00:/uepa] = Uepa!
 [c/FFFF00:/uh] = Uh!
 [c/FFFF00:/ui] = UUUUUUIII!
-[c/FFFF00:/vaodanca] = Vao dansa?
+[c/FFFF00:/vaodanca] = Vao dança?
 [c/FFFF00:/vixi] = Vixi!
 [c/FFFF00:/wah] = *Wah wah wah*
 [c/FFFF00:/xi] = Xiiiiiiii!
 
-[c/0000FF:/v1.2.1]
+[c/6f6fff:/v1.2.1]
+- Atualizado para versão 1.4.4.
+
+[c/6f6fff:/v1.2.1]
 - Adicionado /vixi, /menino, /dutudutuim, /corre e /boing.
 - Alterado o volume e delay de alguns audios.
 
-[c/0000FF:/v1.1.1]
-- Adicionado /peido e /boom (nao tem no ratinho e nem no faro mas eh engrasado)
+[c/6f6fff:/v1.1.1]
+- Adicionado /peido e /boom (não tem no ratinho e nem no faro, mas é engraçado)
 - Adicionado tecla para /som (tinha esquecido).
-- Adicionado opsao de nao tocar certos sons de sua escolha.
-- Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestao). Se vc botou tecla nesse som, talvez tenha q botar de novo.
-
-> Porque nao tem acentuasao as vezes?
-- Terraria eh um pouco problematico com isso.
+- Adicionado opção de não tocar certos sons de sua escolha.
+- Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestão). Se vc botou tecla nesse som, talvez tenha que botar de novo.

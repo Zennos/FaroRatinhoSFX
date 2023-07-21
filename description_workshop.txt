@@ -1,5 +1,5 @@
 Adiciona comandos e teclas que toca sons de efeitos do Programa do Ratinho e O Melhor do Brasil.
-Tem configurações.
+Contém configurações.
 
 Comandos Disponiveis:
 [b]/som[/b] = Toca um som aleatorio.
@@ -45,6 +45,9 @@ Comandos Disponiveis:
 [b]/wah[/b] = * Wah wah wah *
 [b]/xi[/b] = Xiiiiiiii!
 
+[b]v2.2.2[/b]
+- Atualizado para versão [b]1.4.4[/b].
+
 [b]v1.2.1[/b]
 - Adicionado [b]/vixi[/b], [b]/menino[/b], [b]/dutudutuim[/b], [b]/corre[/b] e [b]/boing[/b].
 - Alterado o volume e delay de alguns audios.
@@ -54,9 +57,6 @@ Comandos Disponiveis:
 - Adicionado tecla para [b]/som[/b] (tinha esquecido).
 - Adicionado opção de nao tocar certos sons de sua escolha.
 - Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestão). Se vc botou tecla nesse som, talvez tenha q botar de novo.
-
-> Porque não tem acentuação as vezes?
-- Terraria é um pouco problematico com isso.
 
 Me apoia se quiser. :)
 [url=nubank.com.br/pagar/xldsq/rfgW3dODQh]Pix[/url] | [url=paypal.com/donate?hosted_button_id=68QJ5UGN25LXU]Paypal[/url] | [url=ko-fi.com/edoan]Ko-fi[/url]
