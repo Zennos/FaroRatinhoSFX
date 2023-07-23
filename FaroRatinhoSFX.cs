@@ -72,6 +72,30 @@ namespace FaroRatinhoSFX
             AddSound("xi", "Xiiiiiiii!", new string[] { "chi" }, defaultKeyBind: "NumPad4");
 
             Terraria.Chat.On_ChatHelper.DisplayMessage += ChatHelper_DisplayMessage;
+
+            Terraria.On_Player.QuickMount += On_Player_QuickMount;
+        }
+
+        private void On_Player_QuickMount(On_Player.orig_QuickMount orig, Player self)
+        {
+            orig.Invoke(self);
+
+            if (self.whoAmI != Main.LocalPlayer.whoAmI) return;
+            if (!ModContent.GetInstance<FaroRatinhoSFXConfig>().playSoundOnHorseMount) return;
+
+            var mountId = self.mount.Type;
+            if (
+                mountId == MountID.PaintedHorse ||
+                mountId == MountID.MajesticHorse ||
+                mountId == MountID.DarkHorse ||
+                mountId == MountID.Unicorn ||
+                mountId == MountID.WallOfFleshGoat ||
+                mountId == MountID.Rudolph
+                )
+            {
+                PlaySound(Sounds["cavalo"], self.whoAmI);
+            }
+
         }
 
         private void ChatHelper_DisplayMessage(Terraria.Chat.On_ChatHelper.orig_DisplayMessage orig, NetworkText text, Color color, byte messageAuthor)
@@ -139,6 +163,11 @@ namespace FaroRatinhoSFX
 
         public FaroRatinhoSound GetRandomSFX(bool withIgnoreClientList = true, bool withIgnoreServerList = true)
         {
+            return GetRandomSFXFromList(Sounds.Keys.ToList(), withIgnoreClientList, withIgnoreServerList);
+        }
+
+        public FaroRatinhoSound GetRandomSFXFromList(List<string> soundList, bool withIgnoreClientList = true, bool withIgnoreServerList = true)
+        {
             var clientConfig = ModContent.GetInstance<FaroRatinhoSFXConfig>();
             var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
 
@@ -165,18 +194,18 @@ namespace FaroRatinhoSFX
             }
 
 
-            List<string> keyList = new(Sounds.Keys);
+            List<string> keyList = new(soundList);
             // Removing the ones that are in the ignoredList.
-            keyList.RemoveAll(key => ignoredSounds.Contains(key));
+            keyList.RemoveAll(ignoredSounds.Contains);
 
-            if (keyList.Count == 0) return Sounds.First().Value;
+            if (keyList.Count == 0) return Sounds[soundList.First()];
 
             // Pick one random of the list.
             Random rand = new Random();
             string randomKey = keyList[rand.Next(keyList.Count)];
 
             // Return the sound.
-            return Sounds[randomKey];
+            return Sounds[SoundsNamesAndAliases[randomKey]];
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -186,10 +215,11 @@ namespace FaroRatinhoSFX
             string message = reader.ReadString();
             int team = reader.ReadInt32();
             int who = reader.ReadInt32();
+            bool isDeathSound = reader.ReadBoolean();
 
             var sfx = Sounds[soundName];
 
-			PlaySound(sfx, who, message, team);
+			PlaySound(sfx, who, message, team, isDeathSound);
 			
         }
 
@@ -200,12 +230,12 @@ namespace FaroRatinhoSFX
             packet.Send();
         }
 
-        public void SendSoundMessage(Player player, FaroRatinhoSound sfx, bool withMessage = true)
+        public void SendSoundMessage(Player player, FaroRatinhoSound sfx, bool withMessage = true, bool isDeathSound = false)
         {
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                PlaySound(sfx, player.whoAmI, sfx.description, 0);
+                PlaySound(sfx, player.whoAmI, withMessage ? sfx.description : "", 0, isDeathSound);
                 return;
             }
 
@@ -214,15 +244,18 @@ namespace FaroRatinhoSFX
             packet.Write(withMessage ? $"{player.name}: {sfx.description}" : "");
             packet.Write(player.team);
             packet.Write(player.whoAmI);
+            packet.Write(isDeathSound);
             packet.Send();
         }
 
-        public void PlaySound(FaroRatinhoSound sfx, int fromWho, string message = "", int team = 0)
+        public void PlaySound(FaroRatinhoSound sfx, int fromWho, string message = "", int team = 0, bool isDeathSound = false)
         {
 
             var sound = sfx.sound;
             var config = ModContent.GetInstance<FaroRatinhoSFXConfig>();
             var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
+
+            if (isDeathSound && !config.deathSounds.enabled) return;
 
             if (serverConfig.DisableCommands || config.DisableCommands)
             {
@@ -233,8 +266,8 @@ namespace FaroRatinhoSFX
                 return;
             }
 
-            var ignored = CheckIfSoundIsIgnored(sfx, config.ignoredSounds);
-            var ignoredServer = CheckIfSoundIsIgnored(sfx, serverConfig.ignoredSounds);
+            var ignored = CheckIfSoundIsOnList(sfx, config.ignoredSounds);
+            var ignoredServer = CheckIfSoundIsOnList(sfx, serverConfig.ignoredSounds);
 
             if (ignored || ignoredServer)
             {
@@ -268,7 +301,7 @@ namespace FaroRatinhoSFX
 
         }
 
-        public bool CheckIfSoundIsIgnored(FaroRatinhoSound sfx, List<string> list)
+        public bool CheckIfSoundIsOnList(FaroRatinhoSound sfx, List<string> list)
         {
             foreach (var ignoredName in list)
             {

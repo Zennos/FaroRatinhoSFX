@@ -44,6 +44,8 @@ Keybinds: {
 }
 
 Configs: {
+	DeathSoundsLabel: "[i:1175] Sons de morte"
+
 	FaroRatinhoSFXConfig: {
 		DisplayName: Faro Ratinho SFX Config
 
@@ -89,6 +91,16 @@ Configs: {
 				Adicione na lista os sons que não queira ouvir.
 				'''
 		}
+
+		deathSounds: {
+			Label: "{$DeathSoundsLabel}"
+			Tooltip: Quando você morrer vai tocar algum dos sons dessa lista
+		}
+
+		playSoundOnHorseMount: {
+			Label: '''[i:856] Tocar "Cavalo" quando montar em um cavalo'''
+			Tooltip: Só você vai pode ouvir
+		}
 	}
 
 	FaroRatinhoSFXServerConfig: {
@@ -119,5 +131,34 @@ Configs: {
 		}
 
 		Headers.Note: "[c/00FF00:Opções de Servidor]: As opções abaixo serão aplicada pra todos no servidor."
+
+		deathSounds: {
+			Label: "{$DeathSoundsLabel}"
+			Tooltip:
+				'''
+				Vai tocar alguns dos sons da lista abaixo assim que um jogador morrer.
+
+				Quando desligado, nenhum jogador será permitido tocar sons de morte.
+				'''
+		}
+	}
+
+	DeathSoundsData: {
+		enabled: {
+			Label: Ativado
+			Tooltip: ""
+		}
+
+		sounds: {
+			Label: Sons
+			Tooltip: ""
+		}
+
+		useAnySound: {
+			Label: Qualquer som
+			Tooltip: Quando ativado, a lista abaixo será ignorada e vai tocar qualquer som aleatório.
+		}
+
+		Tooltip: ""
 	}
 }
