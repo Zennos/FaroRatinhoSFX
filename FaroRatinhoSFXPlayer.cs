@@ -7,6 +7,8 @@ using Terraria.ID;
 using Terraria.DataStructures;
 using System.Collections.Generic;
 using System.Linq;
+using static FaroRatinhoSFX.FaroRatinhoSFX;
+using static Humanizer.In;
 
 namespace FaroRatinhoSFX
 {
@@ -17,32 +19,38 @@ namespace FaroRatinhoSFX
             base.Kill(damage, hitDirection, pvp, damageSource);
 
             var clientConfig = ModContent.GetInstance<FaroRatinhoSFXConfig>();
-            if (!clientConfig.deathSounds.enabled) return;
-
             var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
-            if (Main.netMode != NetmodeID.SinglePlayer && !serverConfig.deathSounds.enabled) return;
 
             List<string> soundList = null;
-            if (Main.netMode != NetmodeID.SinglePlayer && serverConfig.deathSounds.sounds.Count > 0)
+            FaroRatinhoSound sfx = null;
+
+            if (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient)
             {
-                soundList = serverConfig.deathSounds.useAnySound ? FaroRatinhoSFX.Instance.Sounds.Keys.ToList() : serverConfig.deathSounds.sounds;
-            } else if (clientConfig.deathSounds.sounds.Count > 0)
-            {
-                soundList = clientConfig.deathSounds.useAnySound ? FaroRatinhoSFX.Instance.Sounds.Keys.ToList() :  clientConfig.deathSounds.sounds;
+                if (Main.netMode == NetmodeID.MultiplayerClient && serverConfig.deathSounds.enabled) return;
+                if (!clientConfig.deathSounds.enabled) return;
+
+                soundList = clientConfig.deathSounds.useAnySound ? FaroRatinhoSFX.Instance.Sounds.Keys.ToList() : clientConfig.deathSounds.sounds;
+                soundList.RemoveAll(x => !FaroRatinhoSFX.Instance.SoundsNamesAndAliases.ContainsKey(x));
+
+                if (soundList.Count == 0) return;
+
+                sfx = FaroRatinhoSFX.Instance.GetRandomSFXFromList(soundList);
+                FaroRatinhoSFX.Instance.PlaySound(sfx, Player.whoAmI);
+                return;
             }
 
-            if (soundList == null) return;
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
+            // Only the server will execute the code below.
 
+            if (!serverConfig.deathSounds.enabled) return;
+
+            soundList = serverConfig.deathSounds.useAnySound ? FaroRatinhoSFX.Instance.Sounds.Keys.ToList() : serverConfig.deathSounds.sounds;
             soundList.RemoveAll(x => !FaroRatinhoSFX.Instance.SoundsNamesAndAliases.ContainsKey(x));
 
             if (soundList.Count == 0) return;
 
-            var sfx = FaroRatinhoSFX.Instance.GetRandomSFXFromList(soundList);
-
-            FaroRatinhoSFX.Instance.PlaySound(sfx, Player.whoAmI);
-            if (Main.netMode == NetmodeID.SinglePlayer) return;
-
-            FaroRatinhoSFX.Instance.SendSoundMessage(Player, sfx, false, true);
+            sfx = FaroRatinhoSFX.Instance.GetRandomSFXFromList(soundList);
+            FaroRatinhoSFX.Instance.SendSoundMessage(Player, sfx, false, SoundTypes.Death, serverConfig.deathSounds.playAtLocationOfDeath);
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)

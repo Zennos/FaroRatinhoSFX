@@ -9,6 +9,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using static FaroRatinhoSFX.FaroRatinhoSFX;
+using static Humanizer.In;
 
 namespace FaroRatinhoSFX
 {
@@ -21,6 +23,14 @@ namespace FaroRatinhoSFX
         public Regex rx = new Regex(@"/(\w+)", RegexOptions.Compiled);
 
         public ModKeybind RandomSoundKeybind;
+
+        public enum SoundTypes
+        {
+            Normal = 0,
+            Death = 1,
+            Horse = 2
+        }
+
         public override void Load()
         {
 
@@ -79,23 +89,35 @@ namespace FaroRatinhoSFX
         private void On_Player_QuickMount(On_Player.orig_QuickMount orig, Player self)
         {
             orig.Invoke(self);
+            // The code below will only run in the clients.
 
             if (self.whoAmI != Main.LocalPlayer.whoAmI) return;
-            if (!ModContent.GetInstance<FaroRatinhoSFXConfig>().playSoundOnHorseMount) return;
-
-            var mountId = self.mount.Type;
-            if (
-                mountId == MountID.PaintedHorse ||
-                mountId == MountID.MajesticHorse ||
-                mountId == MountID.DarkHorse ||
-                mountId == MountID.Unicorn ||
-                mountId == MountID.WallOfFleshGoat ||
-                mountId == MountID.Rudolph
-                )
+            if (!IsHorseMount(self.mount.Type)) return;
+            
+            if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                PlaySound(Sounds["cavalo"], self.whoAmI);
+                PlaySound(Sounds["cavalo"], self.whoAmI, soundType: SoundTypes.Horse, playAtPlayerLocation: true);
+                return;
             }
 
+            // Send it to the server.
+            SendSoundMessage(self, Sounds["cavalo"], false, SoundTypes.Horse, true);
+
+        }
+
+        public bool IsHorseMount(int mountId)
+        {
+            var validMountIds = new[]
+            {
+                MountID.PaintedHorse,
+                MountID.MajesticHorse,
+                MountID.DarkHorse,
+                MountID.Unicorn,
+                MountID.WallOfFleshGoat,
+                MountID.Rudolph
+            };
+
+            return validMountIds.Contains(mountId);
         }
 
         private void ChatHelper_DisplayMessage(Terraria.Chat.On_ChatHelper.orig_DisplayMessage orig, NetworkText text, Color color, byte messageAuthor)
@@ -208,34 +230,12 @@ namespace FaroRatinhoSFX
             return Sounds[SoundsNamesAndAliases[randomKey]];
         }
 
-        public override void HandlePacket(BinaryReader reader, int whoAmI)
-        {
-
-			string soundName = reader.ReadString();
-            string message = reader.ReadString();
-            int team = reader.ReadInt32();
-            int who = reader.ReadInt32();
-            bool isDeathSound = reader.ReadBoolean();
-
-            var sfx = Sounds[soundName];
-
-			PlaySound(sfx, who, message, team, isDeathSound);
-			
-        }
-
-        public void SendMessage(string msg)
-        {
-            var packet = GetPacket();
-            packet.Write(msg);
-            packet.Send();
-        }
-
-        public void SendSoundMessage(Player player, FaroRatinhoSound sfx, bool withMessage = true, bool isDeathSound = false)
+        public void SendSoundMessage(Player player, FaroRatinhoSound sfx, bool withMessage = true, SoundTypes soundType = SoundTypes.Normal, bool playAtPlayerLocation = false)
         {
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                PlaySound(sfx, player.whoAmI, withMessage ? sfx.description : "", 0, isDeathSound);
+                PlaySound(sfx, player.whoAmI, withMessage ? sfx.description : "", 0, soundType);
                 return;
             }
 
@@ -244,18 +244,50 @@ namespace FaroRatinhoSFX
             packet.Write(withMessage ? $"{player.name}: {sfx.description}" : "");
             packet.Write(player.team);
             packet.Write(player.whoAmI);
-            packet.Write(isDeathSound);
+            packet.Write((int)soundType);
+            packet.Write(playAtPlayerLocation);
+
             packet.Send();
         }
 
-        public void PlaySound(FaroRatinhoSound sfx, int fromWho, string message = "", int team = 0, bool isDeathSound = false)
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
 
+            string soundName = reader.ReadString();
+            string message = reader.ReadString();
+            int team = reader.ReadInt32();
+            int who = reader.ReadInt32();
+            SoundTypes soundType = (SoundTypes)reader.ReadInt32();
+            bool playAtLocation = reader.ReadBoolean();
+
+            if (Main.dedServ)
+            {
+                // Repass message to the clients.
+                ModPacket packet = GetPacket();
+                packet.Write(soundName);
+                packet.Write(message);
+                packet.Write(team);
+                packet.Write(who);
+                packet.Write((int)soundType);
+                packet.Write(playAtLocation);
+
+                packet.Send();
+                return;
+            }
+
+            var sfx = Sounds[soundName];
+            PlaySound(sfx, who, message, team, soundType, playAtLocation);
+        }
+
+        public void PlaySound(FaroRatinhoSound sfx, int fromWho, string message = "", int team = 0, SoundTypes soundType = SoundTypes.Normal, bool playAtPlayerLocation = false)
+        {
             var sound = sfx.sound;
             var config = ModContent.GetInstance<FaroRatinhoSFXConfig>();
             var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
 
-            if (isDeathSound && !config.deathSounds.enabled) return;
+            if (!config.playSoundOnHorseMount && soundType == SoundTypes.Horse) return; 
+
+            if (!config.deathSounds.enabled && soundType == SoundTypes.Death) return;
 
             if (serverConfig.DisableCommands || config.DisableCommands)
             {
@@ -289,7 +321,13 @@ namespace FaroRatinhoSFX
 
             if (!Main.dedServ)
             {
-                SoundEngine.PlaySound(sound with { Volume = volume });
+                Vector2? pos = null;
+                if (playAtPlayerLocation)
+                {
+                    var plr = Main.player[fromWho];
+                    pos = plr.position;
+                }
+                SoundEngine.PlaySound(sound with { Volume = volume }, pos);
             }
 
             if (showMessage && !string.IsNullOrEmpty(message))

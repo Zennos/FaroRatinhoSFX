@@ -47,11 +47,11 @@ Configs: {
 	DeathSoundsLabel: "[i:1175] Sons de morte"
 
 	FaroRatinhoSFXConfig: {
-		DisplayName: Faro Ratinho SFX Config
+		DisplayName: Faro Ratinho SFX Configuração
 
 		DisableCommands: {
 			Label: Desabilitar comandos
-			Tooltip: Nada tocara pra voce e nada vai aparecer no chat.
+			Tooltip: Nada tocara pra você e nada vai aparecer no chat.
 		}
 
 		Volume: {
@@ -87,24 +87,23 @@ Configs: {
 			Label: Nao tocar esses sons:
 			Tooltip:
 				'''
-				Se um jogador digitar um desses sons, ele não será tocado, nem com /som.
-				Adicione na lista os sons que não queira ouvir.
+				Os sons dessa lista serão ignorados para você, incluindo sons de morte, e montando em cavalo.
 				'''
 		}
 
 		deathSounds: {
 			Label: "{$DeathSoundsLabel}"
-			Tooltip: Quando você morrer vai tocar algum dos sons dessa lista
+			Tooltip: ""
 		}
 
 		playSoundOnHorseMount: {
 			Label: '''[i:856] Tocar "Cavalo" quando montar em um cavalo'''
-			Tooltip: Só você vai pode ouvir
+			Tooltip: ""
 		}
 	}
 
 	FaroRatinhoSFXServerConfig: {
-		DisplayName: Faro Ratinho SFX Server Config
+		DisplayName: Faro Ratinho SFX Configuração de Servidor
 
 		DisableCommands: {
 			Label: Desabilitar comandos
@@ -118,15 +117,18 @@ Configs: {
 
 		MaxSounds: {
 			Label: Maximo de som ao mesmo tempo na mesma mensagem.
-			Tooltip: ""
+			Tooltip: 
+				'''
+				Por exemplo, se o numero for 2. E o jogador digitar "Oi /uepa /brasil /nao"
+				Só ira tocar o /uepa e o /brasil.
+				'''
 		}
 
 		ignoredSounds: {
 			Label: Nao tocar esses sons:
 			Tooltip:
 				'''
-				Se um jogador digitar um desses sons, ele não será tocado, nem com /som.
-				Adicione na lista os sons que não queira ouvir.
+				Nenhum jogador vai ouvir os sons dessa lista.
 				'''
 		}
 
@@ -134,12 +136,7 @@ Configs: {
 
 		deathSounds: {
 			Label: "{$DeathSoundsLabel}"
-			Tooltip:
-				'''
-				Vai tocar alguns dos sons da lista abaixo assim que um jogador morrer.
-
-				Quando desligado, nenhum jogador será permitido tocar sons de morte.
-				'''
+			Tooltip: ""
 		}
 	}
 
@@ -160,5 +157,29 @@ Configs: {
 		}
 
 		Tooltip: ""
+	}
+
+	DeathSoundsClientData: {
+		Tooltip: ""
+
+		enabled: {
+			Label: Ativado
+			Tooltip: Um dos sons abaixo serão tocado assim que seu personagem morrer.
+		}
+	}
+
+	DeathSoundsServerData: {
+		Headers.DeathSoundsServerNotice: As configurações abaixo serão aplicadas para todos os jogadores
+		Tooltip: ""
+
+		enabled: {
+			Label: Ativado
+			Tooltip: Os sons de morte abaixo serão usado para todos os jogadores
+		}
+
+		playAtLocationOfDeath: {
+			Label: Tocar o som na localização da morte
+			Tooltip: Apenas jogadores próximos vão escutar
+		}
 	}
 }

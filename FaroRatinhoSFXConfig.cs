@@ -33,11 +33,11 @@ namespace FaroRatinhoSFX
 		[DefaultValue(true)]
 		public bool CommandAnywhere;
 
+		public bool playSoundOnHorseMount = false;
+
 		public List<string> ignoredSounds = new();
 
-        public DeathSoundsData deathSounds = new DeathSoundsData();
-
-		public bool playSoundOnHorseMount = false;
+        public DeathSoundsClientData deathSounds = new DeathSoundsClientData();
 
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
@@ -61,7 +61,7 @@ namespace FaroRatinhoSFX
 
 		public List<string> ignoredSounds = new();
 
-        public DeathSoundsData deathSounds = new DeathSoundsData();
+        public DeathSoundsServerData deathSounds = new DeathSoundsServerData();
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -76,11 +76,19 @@ namespace FaroRatinhoSFX
 
 	public class DeathSoundsData
 	{
-		public bool enabled = true;
-
         public bool useAnySound = false;
 
         public List<string> sounds = new();
+
+        public DeathSoundsData()
+        {
+            sounds = new List<string>() { "peido", "boom", "ai", "uh", "atumalaca", "wah" };
+        }
+    }
+
+    public class DeathSoundsClientData : DeathSoundsData
+    {
+        public bool enabled = false;
 
         public override string ToString()
         {
@@ -91,14 +99,35 @@ namespace FaroRatinhoSFX
 
         public override bool Equals(object obj)
         {
-            if (obj is DeathSoundsData other)
-				return enabled == other.enabled && sounds.SequenceEqual(other.sounds);
+            if (obj is DeathSoundsClientData other)
+                return enabled == other.enabled && useAnySound == other.useAnySound && sounds.SequenceEqual(other.sounds);
             return base.Equals(obj);
         }
 
         public override int GetHashCode()
         {
-            return new { enabled, sounds }.GetHashCode();
+            return new { enabled, sounds, useAnySound }.GetHashCode();
+        }
+    }
+
+    public class DeathSoundsServerData : DeathSoundsData
+    {
+		[Header("DeathSoundsServerNotice")]
+
+        public bool enabled = false;
+
+        public bool playAtLocationOfDeath = false;
+
+        public override bool Equals(object obj)
+        {
+            if (obj is DeathSoundsServerData other)
+                return enabled == other.enabled && useAnySound == other.useAnySound && playAtLocationOfDeath == other.playAtLocationOfDeath && sounds.SequenceEqual(other.sounds);
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return new { enabled, sounds, useAnySound, playAtLocationOfDeath }.GetHashCode();
         }
     }
 }
