@@ -311,7 +311,7 @@ namespace FaroRatinhoSFX
             }
 
             var messageColor = new Color(config.MessageColor.R, config.MessageColor.G, config.MessageColor.B);
-            var volume = config.Volume;
+            var volume = config.Volume / 2f;
             var showMessage = !(config.DisableChatMessage || serverConfig.DisableChatMessage);
 
             if (config.MessageColorAsTeam && team > 0)

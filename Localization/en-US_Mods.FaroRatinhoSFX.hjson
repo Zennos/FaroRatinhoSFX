@@ -59,7 +59,8 @@ Configs: {
 			Tooltip:
 				'''
 				0 = mutado.
-				1 = maximo.
+				1 = normal.
+				2 = maximo.
 				'''
 		}
 
@@ -85,10 +86,7 @@ Configs: {
 
 		ignoredSounds: {
 			Label: Nao tocar esses sons:
-			Tooltip:
-				'''
-				Os sons dessa lista serão ignorados para você, incluindo sons de morte, e montando em cavalo.
-				'''
+			Tooltip: Os sons dessa lista serão ignorados para você, incluindo sons de morte, e montando em cavalo.
 		}
 
 		deathSounds: {
@@ -117,7 +115,7 @@ Configs: {
 
 		MaxSounds: {
 			Label: Maximo de som ao mesmo tempo na mesma mensagem.
-			Tooltip: 
+			Tooltip:
 				'''
 				Por exemplo, se o numero for 2. E o jogador digitar "Oi /uepa /brasil /nao"
 				Só ira tocar o /uepa e o /brasil.
@@ -126,10 +124,7 @@ Configs: {
 
 		ignoredSounds: {
 			Label: Nao tocar esses sons:
-			Tooltip:
-				'''
-				Nenhum jogador vai ouvir os sons dessa lista.
-				'''
+			Tooltip: Nenhum jogador vai ouvir os sons dessa lista.
 		}
 
 		Headers.Note: "[c/00FF00:Opções de Servidor]: As opções abaixo serão aplicada pra todos no servidor."

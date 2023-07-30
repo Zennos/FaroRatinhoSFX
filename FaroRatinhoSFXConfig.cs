@@ -17,7 +17,7 @@ namespace FaroRatinhoSFX
 		public bool DisableCommands;
 
 		[LabelArgs("Volume")]
-		[Range(0.0f, 1.0f)]
+		[Range(0.0f, 2.0f)]
 		[DefaultValue(1.0f)]
 		public float Volume;
 
