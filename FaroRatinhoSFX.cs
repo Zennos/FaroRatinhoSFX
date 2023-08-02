@@ -75,7 +75,7 @@ namespace FaroRatinhoSFX
             AddSound("uh", "Uh!", defaultKeyBind: "NumPad3");
             AddSound("ui", "UUUUUUIII!", defaultKeyBind: "NumPad7");
             AddSound("vixi", "Vixi!", new string[] { "vish", "vi" }, defaultKeyBind: "NumPad7");
-            AddSound("vaodanca", "Vao dansa?", new string[] { "vamo", "vao", "vão" }, defaultKeyBind: "NumPad8");
+            AddSound("vaodanca", "Vao dansa?", new string[] { "vamo", "vao", "vão", "vaodança", "vaodansa" }, defaultKeyBind: "NumPad8");
             AddSound("wah", "*Wah wah wah*", new string[] { "ua", "wa" }, defaultKeyBind: "NumPad9");
             AddSound("xi", "Xiiiiiiii!", new string[] { "chi" }, defaultKeyBind: "NumPad4");
 
