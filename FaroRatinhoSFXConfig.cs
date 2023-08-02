@@ -63,6 +63,8 @@ namespace FaroRatinhoSFX
 
         public DeathSoundsServerData deathSounds = new DeathSoundsServerData();
 
+        public BossMessageData playSoundOnBossMessage = new BossMessageData();
+
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
             if (!FaroRatinhoSFX.IsPlayerLocalServerOwner(Main.player[whoAmI]))
@@ -74,19 +76,29 @@ namespace FaroRatinhoSFX
 		}
 	}
 
-	public class DeathSoundsData
+	public class SoundListData
 	{
         public bool useAnySound = false;
 
         public List<string> sounds = new();
 
-        public DeathSoundsData()
+        public SoundListData()
         {
             sounds = new List<string>() { "peido", "boom", "ai", "uh", "atumalaca", "wah" };
         }
     }
 
-    public class DeathSoundsClientData : DeathSoundsData
+    public class BossMessageData : SoundListData
+    {
+        public bool enabled = false;
+
+        public BossMessageData()
+        {
+            sounds = new List<string>() { "xi", "boom", "corre", "galinha", "vixi", "ui", "rapaz", "vaodanca"};
+        }
+    }
+
+    public class DeathSoundsClientData : SoundListData
     {
         public bool enabled = false;
 
@@ -110,7 +122,7 @@ namespace FaroRatinhoSFX
         }
     }
 
-    public class DeathSoundsServerData : DeathSoundsData
+    public class DeathSoundsServerData : SoundListData
     {
 		[Header("DeathSoundsServerNotice")]
 

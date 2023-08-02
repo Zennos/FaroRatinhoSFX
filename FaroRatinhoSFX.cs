@@ -9,8 +9,6 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using static FaroRatinhoSFX.FaroRatinhoSFX;
-using static Humanizer.In;
 
 namespace FaroRatinhoSFX
 {
@@ -120,9 +118,37 @@ namespace FaroRatinhoSFX
             return validMountIds.Contains(mountId);
         }
 
+        public bool IsBossMessage(string text)
+        {
+            return text == Language.GetTextValue("LegacyMisc.28") ||
+                   text == Language.GetTextValue("LegacyMisc.29") ||
+                   text == Language.GetTextValue("LegacyMisc.30");
+        }
+
         private void ChatHelper_DisplayMessage(Terraria.Chat.On_ChatHelper.orig_DisplayMessage orig, NetworkText text, Color color, byte messageAuthor)
         {
             orig.Invoke(text, color, messageAuthor);
+
+            var clientConfig = ModContent.GetInstance<FaroRatinhoSFXConfig>();
+            var serverConfig = ModContent.GetInstance<FaroRatinhoSFXServerConfig>();
+
+            if (
+                Main.LocalPlayer.whoAmI == 0 &&
+                messageAuthor == 255 &&
+                IsBossMessage(text.ToString()) &&
+                serverConfig.playSoundOnBossMessage.enabled
+                )
+            {
+                var soundList = serverConfig.playSoundOnBossMessage.useAnySound ? Sounds.Keys.ToList() : serverConfig.playSoundOnBossMessage.sounds;
+                soundList.RemoveAll(x => !SoundsNamesAndAliases.ContainsKey(x));
+
+                if (soundList.Count > 0 )
+                {
+                    var sfx = GetRandomSFXFromList(soundList);
+                    SendSoundMessage(Main.LocalPlayer, sfx, false);
+                }
+
+            }
 
             var lowerText = text.ToString().ToLower();
 
@@ -136,7 +162,7 @@ namespace FaroRatinhoSFX
 
                 foreach (Match match in matches)
                 {
-                    if (match.Index != 0 && !ModContent.GetInstance<FaroRatinhoSFXConfig>().CommandAnywhere) return;
+                    if (match.Index != 0 && !clientConfig.CommandAnywhere) return;
 
                     GroupCollection groups = match.Groups;
                     var g = groups[1].Value;
@@ -170,7 +196,7 @@ namespace FaroRatinhoSFX
                         PlaySound(sfx, messageAuthor, message, player.team);
                         count++;
 
-                        if (count >= ModContent.GetInstance<FaroRatinhoSFXServerConfig>().MaxSounds) break;
+                        if (count >= serverConfig.MaxSounds) break;
                     }
 
                 }

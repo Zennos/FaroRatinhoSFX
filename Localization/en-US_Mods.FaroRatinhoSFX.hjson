@@ -133,9 +133,14 @@ Configs: {
 			Label: "{$DeathSoundsLabel}"
 			Tooltip: ""
 		}
+
+		playSoundOnBossMessage: {
+			Label: Tocar um som quando aparecer mensagem de boss
+			Tooltip: Esta noite vai ser terrível...
+		}
 	}
 
-	DeathSoundsData: {
+	SoundListData: {
 		enabled: {
 			Label: Ativado
 			Tooltip: ""
@@ -160,6 +165,15 @@ Configs: {
 		enabled: {
 			Label: Ativado
 			Tooltip: Um dos sons abaixo serão tocado assim que seu personagem morrer.
+		}
+	}
+
+	BossMessageData: {
+		Tooltip: ""
+
+		enabled: {
+			Label: Ativado
+			Tooltip: Um dos sons abaixo assim que a mensagem aparecer no chat.
 		}
 	}
 
