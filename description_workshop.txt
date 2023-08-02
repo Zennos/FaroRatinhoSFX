@@ -45,6 +45,11 @@ Comandos Disponiveis:
 [b]/wah[/b] = * Wah wah wah *
 [b]/xi[/b] = Xiiiiiiii!
 
+[b]v3.0.0[/b]
+- Adicionado opção de tocar "Cavalo" quando você monta em um cavalo.
+- Adicionado opção para tocar som ao morrer.
+- Adicionado opção para tocar som quando aparecer mensagens como "Esta noite vai ser terrível..."
+
 [b]v2.2.2[/b]
 - Atualizado para versão [b]1.4.4[/b].
 
