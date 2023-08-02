@@ -63,5 +63,7 @@ Comandos Disponiveis:
 - Adicionado opção de nao tocar certos sons de sua escolha.
 - Renomeado som "nsei" para "mola" (Obrigado Jota pela sugestão). Se vc botou tecla nesse som, talvez tenha q botar de novo.
 
+GitHub: https://github.com/Zennos/FaroRatinhoSFX
+
 Me apoia se quiser. :)
 [url=nubank.com.br/pagar/xldsq/rfgW3dODQh]Pix[/url] | [url=paypal.com/donate?hosted_button_id=68QJ5UGN25LXU]Paypal[/url] | [url=ko-fi.com/edoan]Ko-fi[/url]

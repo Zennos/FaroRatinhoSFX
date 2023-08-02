@@ -1,3 +1,4 @@
 displayName = Sons de Efeito Ratinho & Faro
 author = Edoan
+homepage = https://github.com/Zennos/FaroRatinhoSFX
 version = 3.0.0
